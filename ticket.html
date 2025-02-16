@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Time</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">CINEMA LOGO</h1>
+    </header>
+
+    <div class="container ticket-page">
+        <div class="movie-selection">
+            <h2>Movie 1</h2>
+            <div class="time-slots">
+                <h3>Select Time:</h3>
+                <div class="time-options">
+                    <div class="time-card">1:00 PM - 2:30 PM</div>
+                    <div class="time-card">3:00 PM - 4:30 PM</div>
+                    <div class="time-card">6:00 PM - 7:30 PM</div>
+                </div>
+            </div>
+
+            <div class="ticket-quantity">
+                <h3>Number of Tickets:</h3>
+                <input type="number" id="ticket-quantity" value="1" min="1" max="10">
+            </div>
+
+            <div class="price">
+                <h3>Total Price: <span id="total-price">$12.99</span></h3>
+                <a href="#" id="confirm-btn" class="btn confirm-btn">Confirm Selection</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ticketPrice = 12.99;
+        
+        document.getElementById('ticket-quantity').addEventListener('input', updatePrice);
+        
+        function updatePrice() {
+            const quantity = document.getElementById('ticket-quantity').value;
+            const totalPrice = (ticketPrice * quantity).toFixed(2);
+            document.getElementById('total-price').textContent = `$${totalPrice}`;
+        }
+
+        document.querySelectorAll('.time-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.time-card').forEach(c => c.classList.remove('selected-time'));
+                card.classList.add('selected-time');
+            });
+        });
+
+        document.getElementById('confirm-btn').addEventListener('click', (event) => {
+            const selectedTime = document.querySelector('.time-card.selected-time');
+            if (!selectedTime) {
+                alert('Please select a time slot.');
+                event.preventDefault();
+            } else {
+                const movieTitle = "Movie 1";
+                const time = selectedTime.textContent.trim();
+                const room = "Room 2";
+                const seat = "A12";
+                const quantity = document.getElementById('ticket-quantity').value;
+
+                const url = `result.html?movie=${encodeURIComponent(movieTitle)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}&seat=${encodeURIComponent(seat)}&quantity=${encodeURIComponent(quantity)}`;
+                document.getElementById('confirm-btn').href = url;
+            }
+        });
+    </script>
+</body>
+</html>

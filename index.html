@@ -1,0 +1,113 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Home Page -->
+    <header>
+        <h1 class="logo">Uottawa Theater</h1>
+    </header>
+
+    <div class="container">
+        <!-- Upper Section - Movie Grid -->
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="movie1.jpg" alt="Movie 1">
+                <h3>Movie 1</h3>
+            </div>
+            <div class="movie-card">
+                <img src="movie2.jpg" alt="Movie 2">
+                <h3>Movie 2</h3>
+            </div>
+            <div class="movie-card">
+                <img src="movie3.jpg" alt="Movie 3">
+                <h3>Movie 3</h3>
+            </div>
+            <div class="movie-card">
+                <img src="movie4.jpg" alt="Movie 4">
+                <h3>Movie 4</h3>
+            </div>
+            <div class="movie-card">
+                <img src="movie5.jpg" alt="Movie 5">
+                <h3>Movie 5</h3>
+            </div>
+        </div>
+
+        
+        <!-- Lower Section - Featured Movie -->
+<div class="featured-movie" id="featured-movie">
+    <h2 id="movie-title">Now Showing: Movie 1</h2>
+    <div class="movie-details">
+        <img id="movie-poster" src="movie1-large.jpg" alt="Movie 1 Poster">
+        <div class="movie-info">
+            <p id="movie-director">Director: John Doe</p>
+            <p id="movie-cast">Cast: Actor 1, Actor 2</p>
+            <p id="movie-duration">Duration: 120 mins</p>
+            <a href="ticket.html" class="btn">Buy Tickets</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const movies = {
+        "Movie 1": {
+            title: "Movie 1",
+            poster: "movie1.jpg",
+            director: "John Doe",
+            cast: "Actor 1, Actor 2",
+            duration: "120 mins"
+        },
+        "Movie 2": {
+            title: "Movie 2",
+            poster: "movie2.jpg",
+            director: "Jane Smith",
+            cast: "Actor 3, Actor 4",
+            duration: "90 mins"
+        },
+        "Movie 3": {
+            title: "Movie 3",
+            poster: "movie3.jpg",
+            director: "Sam Lee",
+            cast: "Actor 5, Actor 6",
+            duration: "110 mins"
+        },
+        "Movie 4": {
+            title: "Movie 4",
+            poster: "movie4.jpg",
+            director: "Alice Brown",
+            cast: "Actor 7, Actor 8",
+            duration: "100 mins"
+        },
+        "Movie 5": {
+            title: "Movie 5",
+            poster: "movie5.jpg",
+            director: "Michael Green",
+            cast: "Actor 9, Actor 10",
+            duration: "130 mins"
+        }
+    };
+
+    document.querySelectorAll('.movie-card img').forEach(img => {
+        img.addEventListener('click', () => {
+            const movieTitle = img.alt;
+            const movie = movies[movieTitle];
+            if (movie) {  // Ensure movie data exists
+                document.getElementById('movie-title').textContent = `Now Showing: ${movie.title}`;
+                document.getElementById('movie-poster').src = movie.poster;
+                document.getElementById('movie-director').textContent = `Director: ${movie.director}`;
+                document.getElementById('movie-cast').textContent = `Cast: ${movie.cast}`;
+                document.getElementById('movie-duration').textContent = `Duration: ${movie.duration}`;
+            }
+        });
+    });
+</script>
+
+
+    
+</body>
+</html>
